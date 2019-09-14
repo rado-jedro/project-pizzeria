@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
@@ -51,8 +52,46 @@
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
+  class Product{
+    constructor(id,data){
+      const thisProduct = this;
+      thisProduct.id=id;
+      thisProduct.data=data;
+      thisProduct.renderInMenu();
+      console.log('new Product:', thisProduct);
+    }
+    renderInMenu(){
+      const thisProduct = this;
+
+      /*generate HTML based on template*/
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      /*create element using utils.createElementFromHTML */
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      console.log(thisProduct.element);
+      /*find menu container */
+      const menuContainer = document.querySelector(select.containerOf.menu);
+      console.log(menuContainer);
+      /* add element to menu*/
+      menuContainer.appendChild(thisProduct.element);
+    }
+  }
 
   const app = {
+    initMenu: function(){
+      const thisApp = this;
+      console.log('thisApp.data:', thisApp.data);
+
+      for(let productData in thisApp.data.products){
+        new Product(productData, thisApp.data.products[productData]);
+      }
+      const testProduct = new Product();
+      console.log('testProduct:', testProduct);
+    },
+    initData: function(){
+      const thisApp = this;
+
+      thisApp.data = dataSource;
+    },
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -60,6 +99,8 @@
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
+      thisApp.initData();
+      thisApp.initMenu();
     },
   };
 
