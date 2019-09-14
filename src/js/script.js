@@ -58,8 +58,36 @@
       thisProduct.id=id;
       thisProduct.data=data;
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
       console.log('new Product:', thisProduct);
     }
+    initAccordion(){
+      const thisProduct = this;
+      /* find the clickable trigger (the element that should react to clicking) */
+      let trigger = thisProduct.element.querySelector('.product__header');
+      console.log(trigger);
+      /* START: click event listener to trigger */
+      trigger.addEventListener('click', function(){
+      /* prevent default action for event */
+        event.preventDefault();
+        /* toggle active class on element of thisProduct */
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+      });
+      /* find all active products */
+      const activeProducts = document.querySelectorAll(select.all.menuProducts.active);
+      /* START LOOP: for each active product */
+      for(let activeProduct in activeProducts){
+      /* START: if the active product isn't the element of thisProduct */
+        if (activeProduct == !thisProduct.element) {
+          /* remove class active for the active product */
+          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+          /* END: if the active product isn't the element of thisProduct */
+        }
+      /* END LOOP: for each active product */
+      }
+      /* END: click event listener to trigger */
+    }
+
     renderInMenu(){
       const thisProduct = this;
 
