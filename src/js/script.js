@@ -74,7 +74,7 @@
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
       });
       /* find all active products */
-      const activeProducts = document.querySelectorAll(select.all.menuProducts.active);
+      const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
       /* START LOOP: for each active product */
       for(let activeProduct in activeProducts){
       /* START: if the active product isn't the element of thisProduct */
