@@ -125,8 +125,10 @@
         const param = thisProduct.data.params;
         /* START LOOP: for each optionId in param.options */
         for(let optionId in param.options){
-        /* save the element in param.options with key optionId as const option */
+          console.log(optionId);
+          /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
+          console.log(option);
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           /* START IF: if option is selected and option is not default */
           if(optionSelected && !option.default){
@@ -135,9 +137,9 @@
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          else if (!optionSelected && option.default){
+          else if (optionSelected && option.default){
           /* deduct price of option from price */
-            price = price - option.price;
+            price = price + option.price;
           /* END ELSE IF: if option is not selected and option is default */
           }
         /* END LOOP: for each optionId in param.options */
@@ -186,8 +188,8 @@
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
       }
-      const testProduct = new Product();
-      console.log('testProduct:', testProduct);
+      //const testProduct = new Product();
+      //console.log('testProduct:', testProduct);
     },
     initData: function(){
       const thisApp = this;
