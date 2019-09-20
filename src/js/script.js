@@ -145,6 +145,25 @@
             price = price - option.price;
           /* END ELSE IF: if option is not selected and option is default */
           }
+          /*   START DISPLAY SELECTED OPTIONS - TASK 8.6   */
+          /*save elements to const */
+          
+            /*START LOOP: for each img in imageWrapper */ 
+            
+            /* if/else option defalut selected and check class name */
+            
+            /* check if image has got a class*/
+
+            /*START LOOP: check if option is selected*/
+
+            /*add active class*/
+
+            /*remove active class*/
+
+            /*END LOOP: if else loop*/
+
+            /*END LOOP: for each img*/
+            
         /* END LOOP: for each optionId in param.options */
         }
       /* END LOOP: for each paramId in thisProduct.data.params */
@@ -179,6 +198,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
 
