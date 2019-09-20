@@ -121,8 +121,10 @@
       console.log(price);
       /* START LOOP: for each paramId in thisProduct.data.params */
       for(let paramId in thisProduct.data.params){
-      /* save the element in thisProduct.data.params with key paramId as const param */
-        const param = thisProduct.data.params;
+        console.log(paramId);
+        /* save the element in thisProduct.data.params with key paramId as const param */
+        const param = thisProduct.data.params[paramId];
+        console.log(param);
         /* START LOOP: for each optionId in param.options */
         for(let optionId in param.options){
           console.log(optionId);
@@ -134,13 +136,13 @@
           /* START IF: if option is selected and option is not default */
           if(optionSelected && !option.default){
           /* add price of option to variable price */
-            price = price + option.default;
+            price = price + option.price;
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
           else if (!optionSelected && option.default){
           /* deduct price of option from price */
-            price = price + option.price;
+            price = price - option.price;
           /* END ELSE IF: if option is not selected and option is default */
           }
         /* END LOOP: for each optionId in param.options */
