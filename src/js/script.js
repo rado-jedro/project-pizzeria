@@ -147,23 +147,27 @@
           }
           /*   START DISPLAY SELECTED OPTIONS - TASK 8.6   */
           /*save elements to const */
-          
-            /*START LOOP: for each img in imageWrapper */ 
-            
-            /* if/else option defalut selected and check class name */
-            
-            /* check if image has got a class*/
-
+          const allImages = thisProduct.imageWrapper.querySelectorAll('.'+paramId + '-' +optionId);
+          console.log(allImages);
+          /*START LOOP: if option selected */
+          if (optionSelected) {
             /*START LOOP: check if option is selected*/
-
-            /*add active class*/
-
-            /*remove active class*/
-
-            /*END LOOP: if else loop*/
-
-            /*END LOOP: for each img*/
-            
+            for(let singleImage of allImages){
+              /*add class acvite*/
+              singleImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+            /*END LOOP for each image*/
+          }
+          /*else if option is not selected*/
+          else  {
+            /*start loop*/
+            for(let singleImage of allImages){
+              /*remove active class*/
+              singleImage.classList.remove(classNames.menuProduct.imageVisible);
+              /*end loop*/
+            }
+          /*END else block*/
+          }
         /* END LOOP: for each optionId in param.options */
         }
       /* END LOOP: for each paramId in thisProduct.data.params */
