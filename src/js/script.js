@@ -198,6 +198,15 @@
           //console.log(allImages);
           /*START LOOP: if option selected */
           if (optionSelected) {
+            if(!thisProduct.params[paramId]){
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+              console.log(thisProduct.params[paramId]);
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+            console.log(option.label);
             /*START LOOP: check if option is selected*/
             for(let singleImage of allImages){
               /*add class acvite*/
@@ -225,6 +234,7 @@
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
+      console.log(thisProduct.params);
     }
 
     renderInMenu(){
@@ -256,6 +266,9 @@
 
     addToCart(){
       const thisProduct = this;
+
+      thisProduct.name = thisProduct.data.name;
+      thisProduct.value = thisProduct.amountWidget.value;
       app.cart.add(thisProduct);
     }
 
@@ -337,7 +350,7 @@
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-
+      thisCart.dom.productList = document.querySelector(select.containerOf.cart);
     }
     initActions(){
       const thisCart = this;
@@ -348,8 +361,17 @@
     }
 
     add(menuProduct){
-      // const thisCart = this;
+      const thisCart = this;
+      /*generate HTML based on template*/
+      const generatedHTML = templates.cartProduct(menuProduct);
+      console.log(generatedHTML);
+      /*create DOM element using utils.createElementFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      console.log(generatedDOM);
+      /*add to cart*/
+      thisCart.dom.productList.appendChild(generatedDOM);
       console.log('adding product', menuProduct);
+
     }
   }
 
