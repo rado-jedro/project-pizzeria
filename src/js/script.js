@@ -410,7 +410,7 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       console.log('new CartProduct', thisCartProduct);
-      console.log('productData',menuProduct);
+      console.log('menuProduct',menuProduct);
     }
 
     getElements(element){
