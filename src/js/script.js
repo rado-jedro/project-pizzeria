@@ -268,7 +268,7 @@
       const thisProduct = this;
 
       thisProduct.name = thisProduct.data.name;
-      thisProduct.value = thisProduct.amountWidget.value;
+      thisProduct.amount = thisProduct.amountWidget.value;
       app.cart.add(thisProduct);
     }
 
