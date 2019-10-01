@@ -446,17 +446,19 @@
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        
+        phone: thisCart.dom.phone.value,
+        address: thisCart.dom.address.value,
         totalNumber: thisCart.totalNumber,
-        totalPrice: thisCart.totalPrice,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
+        totalPrice: thisCart.totalPrice,
         products: [],
       };
 
       for(let product of thisCart.products){
         payload.products.push(product.getData());
         console.log('product',product);
+        console.log(product.getData());
       }
 
 
@@ -550,12 +552,14 @@
 
     getData(){
       const thisCartProduct = this;
-
-      thisCartProduct.id;
-      thisCartProduct.ammount;
-      thisCartProduct.price;
-      thisCartProduct.priceSingle;
-      thisCartProduct.params;
+      return {
+        id : thisCartProduct.id,
+        name : thisCartProduct.name,
+        price : thisCartProduct.price,
+        priceSingle : thisCartProduct.priceSingle,
+        amount : thisCartProduct.amount,
+        params: thisCartProduct.params,
+      };
     }
 
   }
