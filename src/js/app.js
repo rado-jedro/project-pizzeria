@@ -1,15 +1,19 @@
 import {settings,select,classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
   initPages: function(){
     const thisApp = this;
 
+    /* get container of all children of pages container .children */
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
+    /*find all links */
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
+    /* activate page of first subpage id*/
     const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id;
@@ -22,6 +26,7 @@ const app = {
     }
 
     thisApp.activatePage(pageMatchingHash);
+    /* addEventListener to link */
 
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
@@ -29,7 +34,7 @@ const app = {
         event.preventDefault();
 
         /* get page id from href attribute */
-        const id = clickedElement.getAttribute('href').replace('#','');
+        const id = clickedElement.getAttribute('href').replace('#',''); //.replace('#', '') -->> remove #*/
         /* run thisApp.activatePage with that id*/
         thisApp.activatePage(id);
 
@@ -98,17 +103,29 @@ const app = {
     });
 
   },
+
+  initBooking: function(){
+    const thisApp = this;
+    /*find booking container widget*/
+    thisApp.bookingContainerWidget = document.querySelector(select.containerOf.booking);
+    /* init new instance of class Booking with arg bookingContainerWidget*/
+    thisApp.booking = new Booking();
+
+  },
+
+
   init: function(){
     const thisApp = this;
-    //console.log('*** App starting ***');
-    //console.log('thisApp:', thisApp);
-    //console.log('classNames:', classNames);
-    //console.log('settings:', settings);
-    //console.log('templates:', templates);
+    // console.log('*** App starting ***');
+    // console.log('thisApp:', thisApp);
+    // console.log('classNames:', classNames);
+    // console.log('settings:', settings);
+    // console.log('templates:', templates);
     thisApp.initPages();
     thisApp.initData();
     // thisApp.initMenu();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
