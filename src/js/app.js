@@ -107,7 +107,9 @@ const app = {
   initBooking: function(){
     const thisApp = this;
     /*find booking container widget*/
-    thisApp.bookingContainerWidget = document.querySelector(select.containerOf.booking);
+    // Do I need this here?
+    //thisApp.bookingContainerWidget = document.querySelector(select.containerOf.booking);
+
     /* init new instance of class Booking with arg bookingContainerWidget*/
     thisApp.booking = new Booking();
 
