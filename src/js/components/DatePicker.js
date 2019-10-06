@@ -11,7 +11,7 @@ class DatePicker extends BaseWidget{
 
     const thisWidget = this;
 
-    /* create attribute equal to single element find in thisWidget.dom.wrapper using selector save in widget. */
+    /* create attribute equal to single element find in thisWidget.dom.wrapper using selector saved in widget. */
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
     /* execute method initPlugin*/
     thisWidget.initPlugin();
@@ -21,7 +21,9 @@ class DatePicker extends BaseWidget{
     const thisWidget = this;
 
     thisWidget.minDate= new Date(thisWidget.value);
-    thisWidget.maxDate = thisWidget.minDate + settings.datePicker.maxDaysInFutur;
+    /* function utils.addDays pre-loded by Kodilla, is moving 'days' from initDays, by number of days */
+    thisWidget.maxDate = utils.addDays(thisWidget.minDate,settings.datePicker.maxDaysInFuture);
+    console.log('thisWidget.maxDate',thisWidget.maxDate);
 
     /* init pluging flatpickr*/
     /* flatpickr(element,options); */
@@ -29,12 +31,12 @@ class DatePicker extends BaseWidget{
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
-      'locale': {
-        'firstDayOfWeek': 1 // start week on Monday
+      locale: {
+        firstDayOfWeek: 1 // start week on Monday
       },
-      'disable': [
+      disable: [
         function(date) {
-          return (date.getDay() === 1); //unable to select Monday
+          return (date.getDay() === 1); //unable to select Monday as to pizzeria is closed
         }
       ],
       onChange: function(dateStr){
