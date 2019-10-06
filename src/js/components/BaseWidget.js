@@ -8,7 +8,7 @@ class BaseWidget {
 
     /* init  widget value */
     //thisWidget.value = initialValue;
-    //class AmountWidget will be responsible for correct value
+    //class AmountWidget is responsible for correct value
     thisWidget.correctValue = initialValue;
   }
   //getter
@@ -18,7 +18,7 @@ class BaseWidget {
     return thisWidget.correctValue;
   }
 
-  /*setValue(value) replaced with set value */
+  /*setValue(value) has been replaced with set value */
   //setter
   set value(value){
     const thisWidget=this;
