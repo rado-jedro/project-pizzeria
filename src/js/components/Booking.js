@@ -25,11 +25,7 @@ class Booking {
     thisBooking.dom.wrapper = element;
 
     /* changed wrapper to html code */
-    thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHtml);
-    console.log(thisBooking.dom.wrapper);
-    /* find booking container widget defined in initBooking*/
-    const bookingContainerWidget = document.querySelector(select.containerOf.booking);
-    bookingContainerWidget.appendChild(thisBooking.dom.wrapper);
+    thisBooking.dom.wrapper.innerHTML = generatedHtml;
 
     /* find single element for people amount */
     thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
@@ -40,7 +36,7 @@ class Booking {
 
     //date selection task 10.3
     /* */
-    thisBooking.dom.datePicker = document.querySelector(thisBooking.dom.datePicker);
+    thisBooking.dom.datePicker = document.querySelector(select.widgets.datePicker.wrapper);
     console.log('thisBooking.dom.datePicker',thisBooking.dom.datePicker);
   }
 
