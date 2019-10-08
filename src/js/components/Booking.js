@@ -73,7 +73,7 @@ class Booking {
       });
   }
 
-
+  /*parseData retrieve data from API */
   parseData(bookings, eventsCurrent, eventsRepeat){
     const  thisBooking = this;
 
@@ -146,7 +146,7 @@ class Booking {
 
       if (
         !allAvailable &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
