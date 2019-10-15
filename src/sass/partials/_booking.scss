@@ -173,6 +173,8 @@
       }
 
     }
+    &.selected {
+      color: lighten($color-success, 40%);
   }
 
   [data-table="1"] {
