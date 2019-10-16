@@ -174,7 +174,8 @@
 
     }
     &.selected {
-      color: lighten($color-success, 40%);
+      background: $color-success;
+    }
   }
 
   [data-table="1"] {
