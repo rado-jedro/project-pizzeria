@@ -13,7 +13,6 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.initActions();
     thisBooking.getData();
-    thisBooking.sendOrder();
     thisBooking.initBoooking();
   }
 
@@ -238,6 +237,19 @@ class Booking {
       });
     }
 
+    thisBooking.starters = [];
+
+    for (let starter of thisBooking.dom.starters) {
+      starter.addEventListener('change', function() {
+        if (thisBooking.checked) {
+          thisBooking.starters.push(starter.value);
+        } else {
+          thisBooking.starters.splice(thisBooking.starters.indexOf(starter.value, 1));
+        }
+      });
+    }
+
+
   }
 
   sendOrder(){
@@ -255,17 +267,6 @@ class Booking {
       starters: thisBooking.starters
     };
 
-    thisBooking.starters = [];
-
-    for (let starter of thisBooking.dom.starters) {
-      starter.addEventListener('change', function() {
-        if (this.checked) {
-          thisBooking.starters.push(starter.value);
-        } else {
-          thisBooking.starters.splice(thisBooking.starters.indexOf(starter.value, 1));
-        }
-      });
-    }
 
     const options = {
       method: 'POST',
@@ -280,9 +281,6 @@ class Booking {
         return response.json();
       }).then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
-
-        thisBooking.starters = [];
-        thisBooking.selectedTable = [];
 
       });
   }
