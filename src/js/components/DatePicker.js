@@ -28,6 +28,7 @@ class DatePicker extends BaseWidget{
     /* init pluging flatpickr*/
     /* flatpickr(element,options); */
     flatpickr(thisWidget.dom.input,{
+      dateFormat: 'Y-m-d',
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
@@ -39,7 +40,7 @@ class DatePicker extends BaseWidget{
           return (date.getDay() === 1); //unable to select Monday as to pizzeria is closed
         }
       ],
-      onChange: function(dateStr){
+      onChange: function(selectedDates, dateStr){
         thisWidget.value = dateStr;
       }
     });
