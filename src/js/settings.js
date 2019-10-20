@@ -69,7 +69,11 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    logoLink:'.logo a',
   },
+  newNav: {
+    newLinks: '.new__nav__links a'
+  }
 };
 
 export const classNames = {
@@ -91,6 +95,10 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  links: {
+    hide: 'hide',
+    unhide: 'unhide',
+  }
 };
 
 export const settings = {
