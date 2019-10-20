@@ -96,8 +96,8 @@ export const classNames = {
     active: 'active',
   },
   links: {
-    hide: 'hide',
-    unhide: 'unhide',
+    visible: 'visible',
+    invisible: 'invisible',
   }
 };
 
