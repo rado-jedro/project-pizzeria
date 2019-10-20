@@ -251,13 +251,14 @@ class Booking {
 
   }
 
-  refreshData(){
+  resetData(){
     const thisBooking = this;
     for (let table of thisBooking.dom.tables) {
       table.classList.remove(classNames.booking.tableSelected);
     }
     thisBooking.starters = [];
     thisBooking.selectedTable = [];
+    thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
   }
 
 
@@ -293,7 +294,7 @@ class Booking {
         console.log('parsedResponse', parsedResponse);
 
         thisBooking.getData();
-        thisBooking.refreshData();
+        thisBooking.resetData();
       });
   }
 
