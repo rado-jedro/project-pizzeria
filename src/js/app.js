@@ -12,6 +12,8 @@ const app = {
 
     /*find all links */
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.newNavLinks = document.querySelectorAll(select.newNav.newLinks);
+    thisApp.headerLink = document.querySelectorAll(select.nav.logoLink);
 
     /* activate page of first subpage id*/
     const idFromHash = window.location.hash.replace('#/', '');
@@ -43,6 +45,35 @@ const app = {
       });
     }
 
+    for (let link of thisApp.headerLink){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* get id from href  .replace('#', '') will remove #*/
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        /* run activatePage with href attribute */
+        thisApp.activatePage(id);
+
+        /* change urls hash */
+        window.location.hash = '#' + id;
+      });
+    }
+
+    for (let link of thisApp.newNavLinks){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* get id from href  .replace('#', '') will remove #*/
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        /* run activatePage with href attribute */
+        thisApp.activatePage(id);
+
+        /* change urls hash */
+        window.location.hash = '#/' + id;
+      });
+    }
   },
 
   activatePage: function(pageId){
@@ -54,6 +85,17 @@ const app = {
     }
     /*add class "active" to matching links, remove from non-matching*/
     for(let link of thisApp.navLinks){
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
+    }
+
+    for(let page of thisApp.pages){
+      page.classList.toggle(classNames.links.hide, page.id == 'home');
+    }
+    /*add class "active" to matching links, remove from non-matching*/
+    for(let link of thisApp.headerLink){
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
