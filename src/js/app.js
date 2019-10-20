@@ -56,7 +56,7 @@ const app = {
         thisApp.activatePage(id);
 
         /* change urls hash */
-        window.location.hash = '#' + id;
+        window.location.hash = '#/' + id;
       });
     }
 
@@ -85,17 +85,6 @@ const app = {
     }
     /*add class "active" to matching links, remove from non-matching*/
     for(let link of thisApp.navLinks){
-      link.classList.toggle(
-        classNames.nav.active,
-        link.getAttribute('href') == '#' + pageId
-      );
-    }
-
-    for(let page of thisApp.pages){
-      page.classList.toggle(classNames.links.hide, page.id == 'home');
-    }
-    /*add class "active" to matching links, remove from non-matching*/
-    for(let link of thisApp.headerLink){
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
