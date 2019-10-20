@@ -249,8 +249,18 @@ class Booking {
       });
     }
 
-
   }
+
+  refreshData(){
+    const thisBooking = this;
+    for (let table of thisBooking.dom.tables) {
+      table.classList.remove(classNames.booking.tableSelected);
+    }
+    thisBooking.starters = [];
+    thisBooking.selectedTable = [];
+  }
+
+
 
   sendOrder(){
     const thisBooking = this;
@@ -282,6 +292,8 @@ class Booking {
       }).then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
 
+        thisBooking.getData();
+        thisBooking.refreshData();
       });
   }
 
