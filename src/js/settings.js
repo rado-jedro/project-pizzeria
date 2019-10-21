@@ -42,6 +42,7 @@ export const select = {
     },
   },
   cart: {
+    wrapper: '.cart',
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
     totalNumber: `.cart__total-number`,
@@ -83,6 +84,8 @@ export const classNames = {
   },
   cart: {
     wrapperActive: 'active',
+    visible: 'visible',
+    invisible: 'invisible',
   },
   booking: {
     loading: 'loading',
