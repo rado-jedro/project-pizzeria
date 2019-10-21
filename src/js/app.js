@@ -14,6 +14,7 @@ const app = {
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     thisApp.newNavLinks = document.querySelectorAll(select.newNav.newLinks);
     thisApp.headerLink = document.querySelectorAll(select.nav.logoLink);
+    thisApp.cartContainer  = document.querySelector(select.cart.wrapper);
 
     /* activate page of first subpage id*/
     const idFromHash = window.location.hash.replace('#/', '');
@@ -89,6 +90,13 @@ const app = {
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
       );
+      /* hide tabs in the div main-nav */
+      if(pageId == 'home'){
+        link.classList.add(classNames.links.invisible);
+      }
+      else {
+        link.classList.remove(classNames.links.invisible);
+      }
     }
 
   },
