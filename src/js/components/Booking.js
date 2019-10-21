@@ -40,7 +40,7 @@ class Booking {
       ],
     };
 
-    console.log('getData params',params);
+    //console.log('getData params',params);
 
     const urls = {
       booking:        settings.db.url + '/' + settings.db.booking
@@ -51,7 +51,7 @@ class Booking {
                                       + '?' + params.eventsRepeat.join('&'),
     };
 
-    console.log('urls',urls);
+    //console.log('urls',urls);
 
     Promise.all([
       fetch(urls.booking),
@@ -71,7 +71,7 @@ class Booking {
 
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-        //console.log(bookings, eventsCurrent, eventsRepeat);
+        console.log(bookings, eventsCurrent, eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
@@ -229,7 +229,7 @@ class Booking {
         if (!table.classList.contains(classNames.booking.tableBooked)) {
           table.classList.toggle(classNames.booking.tableSelected);
           if (!table.classList.contains(classNames.booking.tableSelected)) {
-            thisBooking.selectedTable.splice(thisBooking.selectedTable.indexOf(table.getAttribute(settings.booking.tableIdAttribute)), 1);
+            thisBooking.selectedTable.splice(thisBooking.selectedTable.indexOf(table.getAttribute(settings.booking.tableIdAttribute)), 0);
           } else {
             thisBooking.selectedTable.push(parseInt(table.getAttribute(settings.booking.tableIdAttribute)));
           }
@@ -237,17 +237,6 @@ class Booking {
       });
     }
 
-    thisBooking.starters = [];
-
-    for (let starter of thisBooking.dom.starters) {
-      starter.addEventListener('change', function() {
-        if (thisBooking.checked) {
-          thisBooking.starters.push(starter.value);
-        } else {
-          thisBooking.starters.splice(thisBooking.starters.indexOf(starter.value, 1));
-        }
-      });
-    }
 
   }
 
@@ -265,19 +254,23 @@ class Booking {
 
   sendOrder(){
     const thisBooking = this;
-    const url = settings.db.url + '/' + settings.db.order;
+    const url = settings.db.url + '/' + settings.db.booking;
 
     const payload = {
       id: '',
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.selectedTable,
-      repeat: false,
+      table: parseInt(thisBooking.selectedTable),
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
-      starters: thisBooking.starters
+      starters: []
     };
 
+    for (let starter of thisBooking.dom.starters) {
+      if (starter.checked === true) {
+        payload.starters.push(starter.value);
+      }
+    }
 
     const options = {
       method: 'POST',
