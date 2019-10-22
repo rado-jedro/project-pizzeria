@@ -149,6 +149,9 @@ class Booking {
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+      for (let table of thisBooking.dom.tables) {
+        table.classList.remove(classNames.booking.tableSelected);
+      }
     }
   }
 
@@ -205,7 +208,6 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
-      thisBooking.resetData();
     });
 
   }
@@ -237,7 +239,6 @@ class Booking {
         }
       });
     }
-
 
   }
 
