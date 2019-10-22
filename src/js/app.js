@@ -98,6 +98,11 @@ const app = {
         link.classList.remove(classNames.links.invisible);
       }
     }
+    if(pageId == 'home'){
+      thisApp.cartContainer.classList.add(classNames.links.invisible);
+    } else {
+      thisApp.cartContainer.classList.remove(classNames.links.invisible);
+    }
 
   },
   initMenu: function(){
