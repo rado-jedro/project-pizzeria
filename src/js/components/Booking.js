@@ -83,7 +83,13 @@ class Booking {
     thisBooking.booked = {};
 
     for(let item of bookings){
+      let myTable = item.table;
+      for(let i=0; i<myTable.length; i++){
+        item.table = myTable[i];
+      }
+
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      console.log(item.table);
     }
 
     for(let item of eventsCurrent){
