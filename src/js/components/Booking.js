@@ -262,7 +262,7 @@ class Booking {
       id: '',
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: parseInt(thisBooking.selectedTable),
+      table: thisBooking.selectedTable,
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       starters: []
