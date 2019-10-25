@@ -81,16 +81,20 @@ class Booking {
     const  thisBooking = this;
 
     thisBooking.booked = {};
-
     for(let item of bookings){
-      let myTable = item.table;
-      for(let i=0; i<myTable.length; i++){
-        item.table = myTable[i];
+      /* check if item.table is an array*/
+      if(Array.isArray(item.table)=='false'){
+        thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
       }
-
-      thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
-      console.log(item.table);
-    }
+      else{
+      /* loop throuogh all elements in array item.table*/
+      for(let table of Object.entries (item.table)){
+        thisBooking.makeBooked(item.date, item.hour, item.duration, table);
+        console.log(table);
+      }
+          }
+          console.log(Array.isArray(item.table)); 
+        }
 
     for(let item of eventsCurrent){
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
@@ -128,6 +132,7 @@ class Booking {
       //object thisBooking.booked with key date and hour we add new element to array table
       thisBooking.booked[date][hourBlock].push(table);
     }
+    console.log(thisBooking.table);
   }
 
   updateDOM(){
