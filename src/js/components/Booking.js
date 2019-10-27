@@ -85,14 +85,14 @@ class Booking {
     for(let item of bookings){
 
       /* check if item.table is an array*/
-      if(!Array.isArray(item.table)=='false'){
+      if(!Array.isArray(item.table)){
         thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
       }
       else{
       /* loop throuogh all elements in array item.table*/
 
-        for(let table in item.table){
-          thisBooking.makeBooked(item.date, item.hour, item.duration, parseInt(table));
+        for(let table of item.table){
+          thisBooking.makeBooked(item.date, item.hour, item.duration, (table));
           console.log(table);
         }
       }
